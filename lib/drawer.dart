@@ -1,5 +1,7 @@
+import 'package:dokomi2/FAQ/FAQ.dart';
 import 'package:dokomi2/Homepage.dart';
 import 'package:dokomi2/constants.dart';
+import 'package:dokomi2/workshops/workshops.dart';
 import 'package:flutter/material.dart';
 import 'buehnen/buehnen.dart';
 import 'Homepage.dart';
@@ -51,7 +53,10 @@ class _drawerState extends State<drawer> {
                 child: ListTile(
                   leading: Icon(Icons.work),
                   title: Text('Workshops'),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => workshops()));
+                  },
                 ),
               ),
               Padding(
@@ -72,7 +77,10 @@ class _drawerState extends State<drawer> {
           ListTile(
             leading: Icon(Icons.question_answer),
             title: Text('FAQ'),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => faq()));
+            },
           ),
         ],
       ),

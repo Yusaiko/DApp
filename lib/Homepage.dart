@@ -42,22 +42,22 @@ class _HomepageState extends State<Homepage> {
               physics: ScrollPhysics(),
               children: <Widget>[
                 Container(
-                  child: Text("Test 1"),
+                  child: Text("Highlight Placeholder Img"),
                 ),
                 Container(
-                  child: Text("Test 2"),
+                  child: Text("Hightlight Placerholder Text"),
                 ),
                 Container(
-                  child: Text("Test 3"),
+                  child: Text("Hightlight Placeholder Text"),
                 ),
                 Container(
-                  child: Text("Test 4"),
+                  child: Text("Hightlight Placerholder img"),
                 ),
                 Container(
-                  child: Text("Test 5"),
+                  child: Text("Hightlihgt Placeholder Img"),
                 ),
                 Container(
-                  child: Text("Test 6"),
+                  child: Text("Highlight Placeholder Text"),
                 ),
                 Container(
                   child: Text("Test 7"),

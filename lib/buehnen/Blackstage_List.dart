@@ -27,7 +27,7 @@ class Blackstage_List extends StatelessWidget {
             trailing: RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
-                    text: "${allSessions[i].sessionTotalTime}\n",
+                    text: allSessions[i].sessionTotalTime,
                     style: TextStyle(color: Colors.black),
                     children: [
                       TextSpan(

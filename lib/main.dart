@@ -8,6 +8,7 @@ void main() {
 class DokomiApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    print(int.parse("1200"));
     return MaterialApp(
       home: Homepage(),
     );

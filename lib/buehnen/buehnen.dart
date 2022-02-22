@@ -24,20 +24,40 @@ class _BuehnenState extends State<buehnen> {
     TabBarView(
       children: <Widget>[
         Blackstage_List(
-          allSessions: sessions.where((s) => s.sessionDay == "Sa").toList(),
+          allSessions: sessions
+              .where((s) =>
+                  s.sessionDay == "Sa" &&
+                  s.eventType == "stage" &&
+                  s.stagename == "blackstage")
+              .toList(),
         ),
         Blackstage_List(
-          allSessions: sessions.where((s) => s.sessionDay == "So").toList(),
+          allSessions: sessions
+              .where((s) =>
+                  s.sessionDay == "So" &&
+                  s.eventType == "stage" &&
+                  s.stagename == "blackstage")
+              .toList(),
         ),
       ],
     ),
     TabBarView(
       children: <Widget>[
         Blackstage_List(
-          allSessions: sessions.where((s) => s.sessionDay == "Sa").toList(),
+          allSessions: sessions
+              .where((s) =>
+                  s.sessionDay == "Sa" &&
+                  s.eventType == "stage" &&
+                  s.stagename == "whitestage")
+              .toList(),
         ),
         Blackstage_List(
-          allSessions: sessions.where((s) => s.sessionDay == "So").toList(),
+          allSessions: sessions
+              .where((s) =>
+                  s.sessionDay == "So" &&
+                  s.eventType == "stage" &&
+                  s.stagename == "whitestage")
+              .toList(),
         ),
       ],
     ),

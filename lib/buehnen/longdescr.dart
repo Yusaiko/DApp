@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dokomi2/buehnen/session.dart';
+import 'package:dokomi2/notifications.dart';
 
 class dynamicEventPage extends StatelessWidget {
   final List<Session> allSessions;
@@ -13,6 +14,22 @@ class dynamicEventPage extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(sessions[this.sID - 1].sessionTitle),
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: () {
+                NotificationService().scheduledNotification(
+                    int.parse(sessions[this.sID - 1].sessionId),
+                    sessions[this.sID - 1].sessionTitle,
+                    "Das Event beginnt gleich", //Session Body
+                    sessions[this.sID - 1].sessionStartTime,
+                    sessions[this.sID - 1].sessionDay);
+              },
+              child: Icon(Icons.alarm),
+            ),
+          )
+        ],
       ),
       body: GridView.count(
         padding: EdgeInsets.all(0),
