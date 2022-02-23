@@ -1,6 +1,7 @@
 import 'package:dokomi2/FAQ/FAQ.dart';
 import 'package:dokomi2/Homepage.dart';
 import 'package:dokomi2/constants.dart';
+import 'package:dokomi2/map/all_halls.dart';
 import 'package:dokomi2/workshops/workshops.dart';
 import 'package:flutter/material.dart';
 import 'buehnen/buehnen.dart';
@@ -72,7 +73,10 @@ class _drawerState extends State<drawer> {
           ListTile(
             leading: Icon(Icons.map),
             title: Text('Karte'),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => AllHalls()));
+            },
           ),
           ListTile(
             leading: Icon(Icons.question_answer),
