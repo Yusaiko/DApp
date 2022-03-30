@@ -1,3 +1,4 @@
+import 'package:dokomi2/buehnen/session_api.dart';
 import 'package:dokomi2/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,7 @@ class workshops extends StatefulWidget {
 
 class _WorkshopState extends State<workshops> {
   int _selectedIndex = 0;
+  static List<Session> sessions;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -22,6 +24,7 @@ class _WorkshopState extends State<workshops> {
 
   static List<Widget> _widgetOptions = <Widget>[
     TabBarView(
+      physics: BouncingScrollPhysics(),
       children: <Widget>[
         Blackstage_List(
           allSessions: sessions
@@ -146,8 +149,25 @@ class _WorkshopState extends State<workshops> {
           ),
         ),
         drawer: drawer(),
-        body: Center(
-          child: _widgetOptions.elementAt(_selectedIndex),
+        body: FutureBuilder<List<Session>>(
+          future: UsersApi.getExhibition(),
+          builder: (context, snapshot) {
+            final event = snapshot.data;
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+                return Center(child: CircularProgressIndicator());
+              default:
+                if (snapshot.hasError) {
+                  return Center(child: Text('Some error occured!'));
+                } else {
+                  //sortFields(event);
+                  sessions = event;
+                  return _widgetOptions.elementAt(_selectedIndex);
+                  //buildUsers(event);
+                  // sortFields(event);
+                }
+            }
+          },
         ),
         bottomNavigationBar: new BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
@@ -174,4 +194,58 @@ class _WorkshopState extends State<workshops> {
       ),
     );
   }
+
+  /*Widget buildUsers(List<Session> sessions) => ListView.builder(
+        physics: BouncingScrollPhysics(),
+        itemCount: sessions.length,
+        itemBuilder: (context, index) {
+          final session = sessions[index];
+          return;
+        },
+      );
+
+  sortFields(List<Session> sessions) {
+    SaRa1 = sessions
+        .where((s) =>
+            s.sessionDay == "Sa" &&
+            s.eventType == "workshop" &&
+            s.stagename == "raum1")
+        .toList();
+    SoRa2 = sessions.where((s) =>
+        s.sessionDay == "So" &&
+        s.eventType == "workshop" &&
+        s.stagename == "raum1");
+    SaRa2 = sessions.where((s) =>
+        s.sessionDay == "Sa" &&
+        s.eventType == "workshop" &&
+        s.stagename == "raum2");
+    SoRa2 = sessions.where((s) =>
+        s.sessionDay == "So" &&
+        s.eventType == "workshop" &&
+        s.stagename == "raum2");
+    SaRa3 = sessions.where((s) =>
+        s.sessionDay == "Sa" &&
+        s.eventType == "workshop" &&
+        s.stagename == "raum3");
+    SoRa3 = sessions.where((s) =>
+        s.sessionDay == "So" &&
+        s.eventType == "workshop" &&
+        s.stagename == "raum3");
+    SaRa4 = sessions.where((s) =>
+        s.sessionDay == "Sa" &&
+        s.eventType == "workshop" &&
+        s.stagename == "raum4");
+    SoRa4 = sessions.where((s) =>
+        s.sessionDay == "So" &&
+        s.eventType == "workshop" &&
+        s.stagename == "raum4");
+    SaRa5 = sessions.where((s) =>
+        s.sessionDay == "Sa" &&
+        s.eventType == "workshop" &&
+        s.stagename == "raum5");
+    SoRa5 = sessions.where((s) =>
+        s.sessionDay == "So" &&
+        s.eventType == "workshop" &&
+        s.stagename == "raum5");
+  }*/
 }

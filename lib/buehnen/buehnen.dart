@@ -1,4 +1,5 @@
 import 'package:dokomi2/constants.dart';
+import 'package:dokomi2/buehnen/session_api.dart';
 import 'package:flutter/material.dart';
 
 import '../drawer.dart';
@@ -13,6 +14,7 @@ class buehnen extends StatefulWidget {
 
 class _BuehnenState extends State<buehnen> {
   int _selectedIndex = 0;
+  static List<Session> sessions;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -86,8 +88,25 @@ class _BuehnenState extends State<buehnen> {
           ),
         ),
         drawer: drawer(),
-        body: Center(
-          child: _widgetOptions.elementAt(_selectedIndex),
+        body: FutureBuilder<List<Session>>(
+          future: UsersApi.getExhibition(),
+          builder: (context, snapshot) {
+            final event = snapshot.data;
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+                return Center(child: CircularProgressIndicator());
+              default:
+                if (snapshot.hasError) {
+                  return Center(child: Text('Some error occured!'));
+                } else {
+                  //sortFields(event);
+                  sessions = event;
+                  return _widgetOptions.elementAt(_selectedIndex);
+                  //buildUsers(event);
+                  // sortFields(event);
+                }
+            }
+          },
         ),
         bottomNavigationBar: new BottomNavigationBar(
           items: const <BottomNavigationBarItem>[

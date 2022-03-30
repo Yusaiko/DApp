@@ -25,6 +25,7 @@ class _drawerState extends State<drawer> {
                   image: AssetImage('images/background.jpg'),
                   fit: BoxFit.cover),
             ),
+            child: null,
           ),
           ListTile(
             leading: Icon(Icons.home),

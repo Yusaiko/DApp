@@ -1,4 +1,8 @@
-class SessionsData {
+import 'dart:convert';
+import 'dart:async';
+import 'package:http/http.dart' as http;
+
+/* class SessionsData {
   List<Session> sessions;
 
   SessionsData({this.sessions});
@@ -19,50 +23,46 @@ class SessionsData {
     }
     return data;
   }
-}
+} */
 
 class Session {
   String sessionId;
   String sessionTitle;
   String sessionDesc;
   String sessionShortDesc;
-  String sessionImage;
   String sessionStartTime;
   String sessionTotalTime;
-  String sessionLink;
   String sessionDay;
-  String eventImage;
   String eventType;
   String stagename;
+  String sessionImage;
+  String eventImage;
 
-  Session({
-    this.sessionId,
-    this.sessionTitle,
-    this.sessionDesc,
-    this.sessionShortDesc,
-    this.sessionImage,
-    this.sessionStartTime,
-    this.sessionTotalTime,
-    this.sessionLink,
-    this.sessionDay,
-    this.eventImage,
-    this.eventType,
-    this.stagename,
-  });
+  Session(
+      {this.sessionId,
+      this.sessionTitle,
+      this.sessionDesc,
+      this.sessionShortDesc,
+      this.sessionStartTime,
+      this.sessionTotalTime,
+      this.sessionDay,
+      this.eventType,
+      this.stagename,
+      this.sessionImage,
+      this.eventImage});
 
   Session.fromJson(Map<String, dynamic> json) {
     sessionId = json['session_id'];
     sessionTitle = json['session_title'];
     sessionDesc = json['session_desc'];
     sessionShortDesc = json['session_short_desc'];
-    sessionImage = json['session_image'];
     sessionStartTime = json['session_start_time'];
     sessionTotalTime = json['session_total_time'];
-    sessionLink = json['session_link'];
     sessionDay = json['session_day'];
-    eventImage = json['event_image'];
     eventType = json['event_type'];
     stagename = json['stagename'];
+    sessionImage = json['session_image'];
+    eventImage = json['event_image'];
   }
 
   Map<String, dynamic> toJson() {
@@ -71,18 +71,18 @@ class Session {
     data['session_title'] = this.sessionTitle;
     data['session_desc'] = this.sessionDesc;
     data['session_short_desc'] = this.sessionShortDesc;
-    data['session_image'] = this.sessionImage;
     data['session_start_time'] = this.sessionStartTime;
     data['session_total_time'] = this.sessionTotalTime;
-    data['session_link'] = this.sessionLink;
     data['session_day'] = this.sessionDay;
-    data['event_image'] = this.eventImage;
     data['event_type'] = this.eventType;
     data['stagename'] = this.stagename;
+    data['session_image'] = this.sessionImage;
+    data['event_image'] = this.eventImage;
   }
 }
 
-List<Session> sessions = [
+/*
+ List<Session> sessions = [
   Session(
       sessionId: "1",
       sessionStartTime: "12:00",
@@ -204,4 +204,4 @@ List<Session> sessions = [
     eventType: "stage",
     stagename: "whitestage",
   ),
-];
+]; */

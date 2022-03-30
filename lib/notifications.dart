@@ -12,7 +12,7 @@ class NotificationService extends ChangeNotifier {
         FlutterLocalNotificationsPlugin();
 
     AndroidInitializationSettings androidInitializationSettings =
-        AndroidInitializationSettings("@mipmap/ic_launcher");
+        AndroidInitializationSettings("@mipmap/creamy");
 
     IOSInitializationSettings iosInitializationSettings =
         IOSInitializationSettings();
@@ -35,8 +35,9 @@ class NotificationService extends ChangeNotifier {
   }
 
   //Instant Notification Test
-
+//TODO: Grouping Notifications, Cancel Notifications
   Future instantNotification() async {
+    initzialize();
     var android = AndroidNotificationDetails("id", "channel",
         channelDescription: "description");
 
@@ -53,6 +54,7 @@ class NotificationService extends ChangeNotifier {
 
   Future scheduledNotification(
       int nID, var nTitle, var nBody, var nStartTime, var nStartDate) async {
+    initzialize();
     var timeZoneName;
     var startNotificationTime;
     tz.initializeTimeZones();
@@ -71,13 +73,14 @@ class NotificationService extends ChangeNotifier {
         nID,
         nTitle, //Event Name
         nBody, // Kann fast so bleiben
+
         //tz.TZDateTime.parse(tz.local, "2022-02-22 08:32:00").toUtc(),
         tz.TZDateTime.now(timeZoneName).add(const Duration(seconds: 5)),
         const NotificationDetails(
             android: AndroidNotificationDetails(
                 'Das könnte ihre ID sein', 'Dokomi',
                 channelDescription: 'Das Event beginnt jeden augenblick'),
-            iOS: IOSNotificationDetails()),
+            iOS: IOSNotificationDetails(threadIdentifier: 'thread_id')),
         androidAllowWhileIdle: true,
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.absoluteTime);

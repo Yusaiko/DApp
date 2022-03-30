@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dokomi2/buehnen/session.dart';
 import 'package:dokomi2/notifications.dart';
+import 'package:dokomi2/buehnen/session_api.dart';
 
 class dynamicEventPage extends StatelessWidget {
   final List<Session> allSessions;
@@ -10,6 +11,8 @@ class dynamicEventPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int realID;
+    List<Session> sessions = UsersApi.initStateSessionList();
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
